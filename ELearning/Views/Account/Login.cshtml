@@ -1,0 +1,185 @@
+﻿@model ELearning.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "";
+}
+
+
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>ELearning</title>
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="ELearning" />
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <link href="~/LoginDesign/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/LoginDesign/css/style.css" rel="stylesheet" />
+
+
+    <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+    <!--//fonts-->
+</head>
+
+<body>
+    <!--background-->
+    <br />
+    <br />
+    <br />
+    <!-- Main-Content -->
+    <div class="main-w3layouts-form" style="margin-top:-12px;">
+        <h2>Login to E-Learning</h2>
+        <!-- main-w3layouts-form -->
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            @Html.AntiForgeryToken()
+
+            <b style="color:red">@Html.ValidationSummary(true)</b>
+           
+            <form action="#" method="post">
+                <div class="fields-w3-agileits">
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    <input type="text" name="UserName" id="UserName" placeholder=" Enter User Name" required="" />
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+                <div class="fields-w3-agileits">
+                    <span class="fa fa-key" aria-hidden="true"></span>
+                    <input type="password" name="Password" id="Password" placeholder="Enter Password" required="" />
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="remember-section-wthree">
+                    <ul>
+                        <li>
+                            <label class="anim">
+                                <input type="checkbox" class="checkbox">
+                                <span> Remember me ?</span>
+                            </label>
+                        </li>
+                        <li> <a href="@Url.Action("ForgotPassword","Account")">Forgot password?</a> </li>
+                    </ul>
+                    <div class="clear"> </div>
+                </div>
+                <input type="submit" value="Login" />
+            </form>
+        }
+        <!--// main-w3layouts-form -->
+        <!-- Social icons -->
+        <div class="footer_grid-w3ls">
+            <h5 class="sub-hdg-w3l">or login with your social profile</h5>
+            <ul class="social-icons-agileits-w3layouts">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-twitter"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+        </div>
+        <!--// Social icons -->
+    </div>
+    <!--// Main-Content-->
+    <!-- copyright -->
+    <div class="copyright-w3-agile">
+        <p>&copy; 2020 ELearning India. All Rights Reserved | Design by <a href="https://www.awizomtech.com/" target="_blank">Awizom Tech Bytes Pvt Ltd Raipur</a>			</p>
+    </div>
+    <!--// copyright -->
+    <!--//background-->
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>@ViewBag.Title.</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Register", "Register") if you don't have a local account.
+                    </p>
+                }
+            </section>
+        </div>
+
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

@@ -1,0 +1,86 @@
+﻿@model ELearning.Models.CourseCategory
+@{
+    ViewBag.Title = "CourseCategory";
+    Layout = "~/Areas/Instructor/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("CourseCategory", "Instructor", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+{
+
+    <h4>Add Course Category</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CourseName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input id="CourseName" class="form-control" name="CourseName" placeholder="Enter Course Name" required type="text">
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Duration, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input id="Duration" class="form-control" name="Duration" placeholder="Enter Course Duration" required type="text">
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input id="Price" class="form-control" name="Price" placeholder="Enter Course Price" required type="text">
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CourseImage, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input id="CourseImage" class="form-control" name="CourseImage" placeholder="Enter Course Duration" required type="file">
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <textarea id="Description" class="form-control" name="Description" placeholder="Enter Description" required cols="10" rows="5"></textarea>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Add Category" />
+        </div>
+    </div>
+
+
+}
+@Html.Hidden("RedirectToHome", Url.Action("AllCourseCategory", "Instructor", new { area = "Instructor" }))
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        var msg='@TempData["Example"]';
+        if(msg=='Succeeded') {
+            sweetAlert({
+                title: "Succeeded!",
+                text: "Course Category has been Added SUCCESSFULLY.",
+                type: "success"
+            },
+                                  function() {
+                                      var url=$("#RedirectToHome").val();
+                                      location.href=url;
+                                  });
+
+        }
+        else {
+
+
+        }
+    });
+
+</script>

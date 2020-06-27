@@ -1,0 +1,236 @@
+﻿@using ELearning.Models;
+@using ELearning.DAL
+@{
+    ViewBag.Title = "AllCourseCategory";
+    Layout = "~/Areas/Instructor/Views/Shared/_Layout.cshtml";
+    List<CourseCategory> cc = ViewData["CourseCategory"] as List<CourseCategory>;
+}
+
+
+<div class="page-wrapper">
+    <div class="content">
+
+        <div class="col-sm-12 col-12 text-right m-b-30" style="margin-top:10px;">
+            <a href="@Url.Action("CourseCategory", "Instructor", new { area = "Instructor" })" class="btn btn-success btn-rounded"><i class="fa fa-plus"></i> Add Course Category</a>
+        </div>
+        <div class="row" style="margin-top:-20px;">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h4 class="" style="color:#481717;text-decoration:underline">All Course Category</h4>
+                    @if (cc != null)
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="allcat">
+                                <thead>
+                                    <tr style="background-color: #2ba5f6; color: white;">
+                                        <th style="padding: 5px;">
+                                            Course Name
+                                        </th>
+
+                                        <th style="padding: 5px;">
+                                            Duration
+                                        </th>
+
+                                        <th style="padding: 5px;">
+                                            Price
+                                        </th>
+
+                                        <th style="padding: 5px;">
+                                            Image
+                                        </th>
+
+                                        <th style="padding: 5px;">
+                                            Description
+                                        </th>
+
+                                        <th style="padding: 5px;">
+                                            Created Date
+                                        </th>
+
+                                        <th style="padding: 5px;">
+                                            Action
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var i in cc)
+                                    {
+                                        <tr>
+                                            <td style="padding:5px;color:#ff0000;">
+                                                @i.CourseName
+                                            </td>
+
+                                            <td style="padding:5px;color:#ff0000;">
+                                                @i.Duration
+                                            </td>
+
+                                            <td style="padding:5px;color:#ff0000;">
+                                                @i.Price
+                                            </td>
+
+                                            <td style="padding:5px;text-align:center">
+                                                <img src="@Global.WebsiteUrl()~/@i.CourseImage" alt="Gallery Image" style="height:120px;width:250px;" />
+                                            </td>
+
+                                            <td style="padding:5px;color:#ff0000;">
+                                                @i.Description
+                                            </td>
+
+                                            <td style="padding:5px;color:#ff0000;">
+                                                @i.CreatedOn.ToShortDateString()
+                                            </td>
+
+                                            <td style="text-align:center">
+
+
+                                                <a href="@Url.Action("DeleteCategory", "Instructor", new { CourseCategoryID = i.CourseCategoryID, area = "Admin" })" data-togg data-toggle="modal" data-target="#delete_patient" data-myvalue="@i.CourseCategoryID" onclick="Setval('@i.CourseCategoryID')"><i class="fa fa-trash-o m-r-5" title="Delete"></i></a>
+
+
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <input type="text" id="PatientDid" style="display:none" />
+                        <img src="assets/img/sent.png" alt="" width="50" height="46">
+                        <h3>Are you sure want to delete this Category?</h3>
+                        <div class="m-t-20">
+                            <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                            <button type="submit" class="btn btn-danger" onclick="DeleteCategory('')">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+@Html.Hidden("RedirectToDelete", Url.Action("DeleteCourseCategory", "Instructor", new { area = "Instructor" }))
+@Html.Hidden("RedirectToHome", Url.Action("AllCourseCategory", "Instructor", new { area = "Instructor" }))
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Assests/jquery.dataTables.min.js"></script>
+<script src="~/Assests/dataTables.bootstrap4.min.js"></script>
+<link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert.js"></script>
+
+
+
+
+
+<script type="text/javascript">
+    $(function() {
+        var msg='@TempData["example"]';
+        if(msg=='Deleted') {
+            sweetAlert({
+                title: "Deleted!",
+                text: "Course Deleted SUCCESSFULLY.",
+                type: "success"
+            },
+                                  function() {
+                                      var url=$("#RedirectToHome").val();
+                                      location.href=url;
+                                  });
+
+        }
+        else {
+
+
+        }
+    });
+
+</script>
+
+<script>
+    function Setval(id) {
+        document.getElementById('PatientDid').value = id;
+    }
+
+    function DeleteCategory() {
+        var CourseCategoryID = $('#PatientDid').val();
+        var url = $("#RedirectToDelete").val() + "?CourseCategoryID=" + CourseCategoryID;
+        location.href = url;
+    }
+
+</script>
+
+
+
+<script>
+    $('#allcat thead tr').clone(true).appendTo('#allcat thead');
+    var table = $('#allcat').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        ordering: false,
+    });
+    $('#allcat thead tr:eq(1) th').each(function (i) {
+        var title = $(this).text().trim();
+        if (title == "Action") {
+            $(this).html('<div style="width:70px;"></div>');
+        }
+
+        else {
+            if (title == "Course Name") {
+                $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" style="width:150px;"/>');
+            }
+
+            else if (title == "Duration" || title == "Price") {
+                $(this).html('<input type="text" placeholder="Search ' + title + '" style="width:120px;"/>');
+            }
+
+            else if (title == "Image" || title == "Description") {
+                $(this).html('<input type="text" placeholder="Search ' + title + '" style="width:150px;"/>');
+
+            }
+
+           
+
+            else {
+                $(this).html('<input type="text" placeholder="Search ' + title + '" style="width:100px;"/>');
+            }
+
+        }
+
+
+        $('input', this).on('keyup change', function () {
+            if (table.column(i).search() !== this.value) {
+                table
+                    .column(i)
+                    .search(this.value)
+                    .draw();
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+
+    });
+    //$('#stock').dataTable({
+    //    fixedHeader: true
+    //});
+</script>

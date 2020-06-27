@@ -1,0 +1,130 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Instructor/Views/Shared/_Layout.cshtml";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="~/Areas/Instructor/admin.css" rel="stylesheet" />
+<div class="">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Icon Cards-->
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                <a href="#">
+                    <div class="inforide">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3 rideone">
+                                <img src="~/Content/agrisciencelogo.png" />
+
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>Total Course</h4>
+
+                                @if (@ViewBag.AppliedJobs != null)
+                                {
+                                    <h2>@ViewBag.AppliedJobs</h2>
+                                }
+                                else
+                                {
+                                    <h2>45</h2>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                <a href="#">
+                    <div class="inforide">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3 ridethree">
+                                <img src="~/Content/agrisciencelogo.png" />
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>Subscriptions</h4>
+                                @if (@ViewBag.TotalJobs != null)
+                                {
+                                    <h2>@ViewBag.TotalJobs</h2>
+                                }
+                                else
+                                {
+                                    <h2>145</h2>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                <a href="#">
+                    <div class="inforide">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3 ridetwo">
+                                <img src="~/Content/agrisciencelogo.png" />
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>Faculties</h4>
+                                @if (@ViewBag.Contacts != null)
+                                {
+                                    <h2>@ViewBag.Contacts </h2>
+                                }
+                                else
+                                {
+                                    <h2>35</h2>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                <a href="#">
+                    <div class="inforide">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-3 ridetwo">
+                                <img src="~/Content/agrisciencelogo.png" />
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                <h4>FeedBacks</h4>
+                                @if (@ViewBag.Feedback != null)
+                                {
+                                    <h2>@ViewBag.Feedback </h2>
+                                }
+                                else
+                                {
+                                    <h2>145</h2>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+
+
+
+        </div>
+        <br />
+
+
+        <img src="~/Assests/images/banner-01.jpg" style="height:380px;width:100%" />
+
+
+    </div>
+</div>
